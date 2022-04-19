@@ -1,24 +1,487 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yfb-7T-BdX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--串接 API 的 5 種方法-->
+        <scene sceneID="c6J-C5-Bcb">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController id="MjS-Gb-EOu" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" id="69P-HM-zIS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="zKv-xd-e1p">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="ECT-UP-rwb" style="IBUITableViewCellStyleDefault" id="J8D-Nb-kt3">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J8D-Nb-kt3" id="Lw9-ld-lnq">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="定義串接 API 的物件， 搭配 async function" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ECT-UP-rwb">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="d8O-D9-5s3" kind="show" id="66E-ot-5Eb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="syh-vX-skl" style="IBUITableViewCellStyleDefault" id="xbD-ZX-ISu">
+                                        <rect key="frame" x="0.0" y="88" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xbD-ZX-ISu" id="Wa1-KR-q6I">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="定義串接 API 的物件，串接 API 的 function 裡定義 function 型別的 completion 參數 &amp; 使用 Result type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="syh-vX-skl">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="qDt-Ks-uvc" kind="show" id="wZc-JQ-bGp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Suj-vG-l3g" style="IBUITableViewCellStyleDefault" id="Y9A-6L-bmE">
+                                        <rect key="frame" x="0.0" y="131.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y9A-6L-bmE" id="9yQ-7h-mt9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="定義串接 API 的物件，串接 API 的 function 裡定義 function 型別的 completion 參數" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Suj-vG-l3g">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="62T-vY-yB7" kind="show" id="kVb-y9-BJm"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Kme-Nf-ZHU" style="IBUITableViewCellStyleDefault" id="J9d-dc-xxC">
+                                        <rect key="frame" x="0.0" y="175" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J9d-dc-xxC" id="nMB-Sv-atq">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="使用 generic，protocol &amp; associatedtype 定義 APIRequest &amp; APIService，搭配 async &amp; await" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kme-Nf-ZHU">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="6fK-ec-SHQ" kind="show" id="2nG-Dh-l2N"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="sjH-kw-D75" style="IBUITableViewCellStyleDefault" id="mmD-ng-2hM">
+                                        <rect key="frame" x="0.0" y="218.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mmD-ng-2hM" id="tXf-bC-sT1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="使用 generic，protocol &amp; associatedtype 定義 APIRequest &amp; APIService，搭配 Result type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sjH-kw-D75">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="zFr-GV-9mt" kind="show" id="oIN-U1-rka"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="MjS-Gb-EOu" id="fQZ-zo-caj"/>
+                            <outlet property="delegate" destination="MjS-Gb-EOu" id="Nop-il-0a0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="串接 API 的 5 種方法" id="AH8-ye-aM4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nGP-Id-o7p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="808.69565217391312" y="-52.232142857142854"/>
+        </scene>
+        <!--定義串接 API 的物件， 搭配 async function-->
+        <scene sceneID="FC8-gw-rrO">
+            <objects>
+                <tableViewController id="d8O-D9-5s3" customClass="CatApiClientAsyncTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="NoF-Zi-Xbe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatTableViewCell" rowHeight="141" id="svl-NN-UwY" customClass="CatTableViewCell" customModule="DemoApiUIKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="141"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="svl-NN-UwY" id="XZo-Cx-Bo7">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UZt-wO-cSa">
+                                            <rect key="frame" x="10" y="10" width="394" height="121"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbS-Lm-Gfv">
+                                                    <rect key="frame" x="0.0" y="50.5" width="284" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qTl-ad-D1Y">
+                                                    <rect key="frame" x="294" y="10.5" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qTl-ad-D1Y" secondAttribute="height" multiplier="1:1" id="RYg-Vt-Vbp"/>
+                                                        <constraint firstAttribute="width" constant="100" id="obZ-YV-Nlg"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="UZt-wO-cSa" firstAttribute="leading" secondItem="XZo-Cx-Bo7" secondAttribute="leading" constant="10" id="eKn-Nb-JFF"/>
+                                        <constraint firstAttribute="bottom" secondItem="UZt-wO-cSa" secondAttribute="bottom" constant="10" id="fZC-de-HnB"/>
+                                        <constraint firstItem="UZt-wO-cSa" firstAttribute="top" secondItem="XZo-Cx-Bo7" secondAttribute="top" constant="10" id="oom-oV-ItW"/>
+                                        <constraint firstAttribute="trailing" secondItem="UZt-wO-cSa" secondAttribute="trailing" constant="10" id="xJt-ok-MPS"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="favoriteIdLabel" destination="vbS-Lm-Gfv" id="Nrp-Sl-P8c"/>
+                                    <outlet property="photoImageView" destination="qTl-ad-D1Y" id="q3l-IH-CJs"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="d8O-D9-5s3" id="AJi-xO-bip"/>
+                            <outlet property="delegate" destination="d8O-D9-5s3" id="BT6-pS-FZY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="定義串接 API 的物件， 搭配 async function" id="Ddw-QV-W9Q">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nHt-rJ-bt7">
+                            <connections>
+                                <action selector="upVote:" destination="d8O-D9-5s3" id="ij1-YN-c1F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DQY-vw-kkt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1725" y="-1055"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="L2e-SR-30k">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yfb-7T-BdX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XeT-YO-CEy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MjS-Gb-EOu" kind="relationship" relationship="rootViewController" id="hky-sp-ftL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ifb-7h-CGy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303" y="-52"/>
+        </scene>
+        <!--定義串接 API 的物件 & 使用 Result type-->
+        <scene sceneID="wyB-oi-V3X">
+            <objects>
+                <tableViewController id="qDt-Ks-uvc" customClass="CatApiClientResultTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="HpC-OD-kZD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatTableViewCell" rowHeight="141" id="Jma-zS-gzA" customClass="CatTableViewCell" customModule="DemoApiUIKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="141"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jma-zS-gzA" id="mfx-HM-3ck">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="S4Y-UA-fNQ">
+                                            <rect key="frame" x="10" y="10" width="394" height="121"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvp-fF-pkI">
+                                                    <rect key="frame" x="0.0" y="50.5" width="284" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MoJ-9L-Rco">
+                                                    <rect key="frame" x="294" y="10.5" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="MoJ-9L-Rco" secondAttribute="height" multiplier="1:1" id="3zA-25-0Hx"/>
+                                                        <constraint firstAttribute="width" constant="100" id="eAJ-sC-yLA"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="S4Y-UA-fNQ" firstAttribute="leading" secondItem="mfx-HM-3ck" secondAttribute="leading" constant="10" id="dZc-pf-z1h"/>
+                                        <constraint firstItem="S4Y-UA-fNQ" firstAttribute="top" secondItem="mfx-HM-3ck" secondAttribute="top" constant="10" id="jAM-fg-c3G"/>
+                                        <constraint firstAttribute="trailing" secondItem="S4Y-UA-fNQ" secondAttribute="trailing" constant="10" id="l0i-xL-Hgu"/>
+                                        <constraint firstAttribute="bottom" secondItem="S4Y-UA-fNQ" secondAttribute="bottom" constant="10" id="rEF-LZ-Has"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="favoriteIdLabel" destination="Vvp-fF-pkI" id="nAA-c8-62H"/>
+                                    <outlet property="photoImageView" destination="MoJ-9L-Rco" id="cYa-72-1G8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qDt-Ks-uvc" id="qXD-iq-2U1"/>
+                            <outlet property="delegate" destination="qDt-Ks-uvc" id="Ev7-Ry-xmo"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="定義串接 API 的物件 &amp; 使用 Result type" id="WuM-7g-7U0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iMh-yQ-tXa">
+                            <connections>
+                                <action selector="upVote:" destination="qDt-Ks-uvc" id="MgZ-0t-tPO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tut-Oq-cnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1871" y="-652"/>
+        </scene>
+        <!--定義串接 API 的物件 & function 型別的參數-->
+        <scene sceneID="qjY-a8-IGw">
+            <objects>
+                <tableViewController id="62T-vY-yB7" customClass="CatApiClientCompletionTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ibK-kh-o9z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatTableViewCell" rowHeight="141" id="bV4-xf-oCR" customClass="CatTableViewCell" customModule="DemoApiUIKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="141"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bV4-xf-oCR" id="mBr-WF-qpC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6hE-Ib-EaS">
+                                            <rect key="frame" x="10" y="10" width="394" height="121"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dw-VP-8hs">
+                                                    <rect key="frame" x="0.0" y="50.5" width="284" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPJ-UQ-cBw">
+                                                    <rect key="frame" x="294" y="10.5" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="6Jr-bb-pBa"/>
+                                                        <constraint firstAttribute="width" secondItem="BPJ-UQ-cBw" secondAttribute="height" multiplier="1:1" id="r01-Yr-OCS"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="6hE-Ib-EaS" firstAttribute="leading" secondItem="mBr-WF-qpC" secondAttribute="leading" constant="10" id="76a-LV-apM"/>
+                                        <constraint firstItem="6hE-Ib-EaS" firstAttribute="top" secondItem="mBr-WF-qpC" secondAttribute="top" constant="10" id="Pzn-Pe-mTt"/>
+                                        <constraint firstAttribute="bottom" secondItem="6hE-Ib-EaS" secondAttribute="bottom" constant="10" id="XJg-qg-6rl"/>
+                                        <constraint firstAttribute="trailing" secondItem="6hE-Ib-EaS" secondAttribute="trailing" constant="10" id="mEv-kE-CzG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="favoriteIdLabel" destination="7dw-VP-8hs" id="okB-CZ-iJP"/>
+                                    <outlet property="photoImageView" destination="BPJ-UQ-cBw" id="ENE-2J-0lF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="62T-vY-yB7" id="0LS-vW-6Vh"/>
+                            <outlet property="delegate" destination="62T-vY-yB7" id="ss0-sJ-7ia"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="定義串接 API 的物件 &amp; function 型別的參數" id="Rxh-Hp-SvW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="22v-Aj-imf">
+                            <connections>
+                                <action selector="upVote:" destination="62T-vY-yB7" id="79y-Gn-kcJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Acp-yo-Z3a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1910" y="-72"/>
+        </scene>
+        <!--定義 APIRequest & APIService，搭配 async-->
+        <scene sceneID="5Hi-52-YTB">
+            <objects>
+                <tableViewController id="6fK-ec-SHQ" customClass="APIRequestAsyncTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="lOo-0L-4uD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatTableViewCell" rowHeight="141" id="ico-8L-M9z" customClass="CatTableViewCell" customModule="DemoApiUIKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="141"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ico-8L-M9z" id="QeW-lW-EHh">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="F5m-gw-d01">
+                                            <rect key="frame" x="10" y="10" width="394" height="121"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qud-Sk-beD">
+                                                    <rect key="frame" x="0.0" y="50.5" width="284" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VbT-JE-ScV">
+                                                    <rect key="frame" x="294" y="10.5" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="VbT-JE-ScV" secondAttribute="height" multiplier="1:1" id="qga-vp-WlI"/>
+                                                        <constraint firstAttribute="width" constant="100" id="xUs-hy-FNp"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="F5m-gw-d01" firstAttribute="leading" secondItem="QeW-lW-EHh" secondAttribute="leading" constant="10" id="2q2-dg-dW6"/>
+                                        <constraint firstAttribute="bottom" secondItem="F5m-gw-d01" secondAttribute="bottom" constant="10" id="Uca-JQ-c8a"/>
+                                        <constraint firstAttribute="trailing" secondItem="F5m-gw-d01" secondAttribute="trailing" constant="10" id="tJT-xh-gso"/>
+                                        <constraint firstItem="F5m-gw-d01" firstAttribute="top" secondItem="QeW-lW-EHh" secondAttribute="top" constant="10" id="tYh-kg-pfL"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="favoriteIdLabel" destination="qud-Sk-beD" id="5hG-Hz-Vrm"/>
+                                    <outlet property="photoImageView" destination="VbT-JE-ScV" id="OzQ-dT-Mn3"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6fK-ec-SHQ" id="IlK-dc-aeG"/>
+                            <outlet property="delegate" destination="6fK-ec-SHQ" id="eNb-5f-QxR"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="定義 APIRequest &amp; APIService，搭配 async" id="OAf-4T-d9A">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0NM-W8-GTQ">
+                            <connections>
+                                <action selector="upVote:" destination="6fK-ec-SHQ" id="r5C-8o-M4i"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xjg-yP-rrc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755" y="338"/>
+        </scene>
+        <!--定義 APIRequest & APIService，搭配 Result-->
+        <scene sceneID="k7f-eo-zLF">
+            <objects>
+                <tableViewController id="zFr-GV-9mt" customClass="APIRequestResultTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="U97-XN-LrG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatTableViewCell" rowHeight="141" id="Rrv-jh-FbY" customClass="CatTableViewCell" customModule="DemoApiUIKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="141"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rrv-jh-FbY" id="ojG-Jp-4Bj">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zeB-2V-O1Z">
+                                            <rect key="frame" x="10" y="10" width="394" height="121"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96b-U2-cug">
+                                                    <rect key="frame" x="0.0" y="50.5" width="284" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zJp-FU-pQf">
+                                                    <rect key="frame" x="294" y="10.5" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="6b5-Hv-vlA"/>
+                                                        <constraint firstAttribute="width" secondItem="zJp-FU-pQf" secondAttribute="height" multiplier="1:1" id="gpQ-aR-D8B"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zeB-2V-O1Z" firstAttribute="top" secondItem="ojG-Jp-4Bj" secondAttribute="top" constant="10" id="Bpl-gE-tbv"/>
+                                        <constraint firstAttribute="bottom" secondItem="zeB-2V-O1Z" secondAttribute="bottom" constant="10" id="Mfi-1l-oTx"/>
+                                        <constraint firstAttribute="trailing" secondItem="zeB-2V-O1Z" secondAttribute="trailing" constant="10" id="eXs-69-WBi"/>
+                                        <constraint firstItem="zeB-2V-O1Z" firstAttribute="leading" secondItem="ojG-Jp-4Bj" secondAttribute="leading" constant="10" id="tkR-xp-heD"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="favoriteIdLabel" destination="96b-U2-cug" id="Smb-Cs-Jm6"/>
+                                    <outlet property="photoImageView" destination="zJp-FU-pQf" id="Nw3-IE-CBp"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zFr-GV-9mt" id="Umj-ow-OaD"/>
+                            <outlet property="delegate" destination="zFr-GV-9mt" id="SxR-WD-n3U"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="定義 APIRequest &amp; APIService，搭配 Result" id="QoQ-1C-ga5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QDj-Gc-cHt">
+                            <connections>
+                                <action selector="upVote:" destination="zFr-GV-9mt" id="Q3u-W3-wJ4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xk5-FV-0oH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1310" y="659"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
