@@ -20,15 +20,23 @@ class CatApiClient {
         urlSession = URLSession(configuration: configuration)
     }
     
-    func decode<T: Decodable>(data: Data) throws -> T {
+    
+    func decode<T: Decodable>(data: Data, response: URLResponse) throws -> T {
+        
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-            return try decoder.decode(T.self, from: data)
-        } catch {
-            let apiErrorResponse: ApiErrorResponse = try decode(data: data)
-            throw apiErrorResponse
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            
+            if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
+                throw apiErrorResponse
+            } else {
+                throw CatApiError.requestFailed
+
+            }
         }
+        return try decoder.decode(T.self, from: data)
+        
     }
     
     func fetchFavorites() async throws -> [Favorite] {
@@ -41,9 +49,9 @@ class CatApiClient {
             URLQueryItem(name: "sub_id", value: userId)
         ]
         let request = URLRequest(url: components.url!)
-        let (data, _) = try await urlSession.data(for: request)
-        return try decode(data: data)
-
+        let (data, response) = try await urlSession.data(for: request)
+        return try decode(data: data, response: response)
+        
     }
     
     func vote(imageId: String, value: VoteValue) async throws -> UpdateVote {
@@ -57,10 +65,10 @@ class CatApiClient {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         request.httpBody = try? encoder.encode(body)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let (data, _) = try await urlSession.data(for: request)
-        return try decode(data: data)
-
+        //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let (data, response) = try await urlSession.data(for: request)
+        return try decode(data: data, response: response)
+        
     }
 }
 

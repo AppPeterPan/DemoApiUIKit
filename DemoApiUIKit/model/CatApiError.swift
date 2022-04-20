@@ -9,4 +9,5 @@ import Foundation
 
 enum CatApiError: Error, LocalizedError {
     case userNotLogin
+    case requestFailed
 }

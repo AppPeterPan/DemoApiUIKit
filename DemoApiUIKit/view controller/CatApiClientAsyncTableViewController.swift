@@ -36,7 +36,7 @@ class CatApiClientAsyncTableViewController: UITableViewController {
     
     @IBAction func upVote(_ sender: Any) {
         Task {
-            try? await CatApiClient.shared.vote(imageId: "9ccXTANkb", value: .up)            
+            try? await CatApiClient.shared.vote(imageId: "9ccXTANkb", value: .up)
         }
     }
     

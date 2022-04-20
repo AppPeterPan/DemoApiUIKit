@@ -47,31 +47,45 @@ extension APIRequest {
 extension APIRequest where Response: Decodable {
     
     func send() async throws -> Response {
-        let (data, _) = try await URLSession.catAPI.data(for: request)
+        let (data, response) = try await URLSession.catAPI.data(for: request)
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-            return try decoder.decode(Response.self, from: data)
-        } catch {
-            throw try decoder.decode(ApiErrorResponse.self, from: data)
-        }
         
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            
+            if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
+                throw apiErrorResponse
+            } else {
+                throw CatApiError.requestFailed
+
+            }
+        }
+        return try decoder.decode(Response.self, from: data)
     }
     
     func send(completion: @escaping (Result<Response, Error>) -> Void) {
-        URLSession.catAPI.dataTask(with: request) { data, _, error in
+        URLSession.catAPI.dataTask(with: request) { data, response, error in
             if let data = data {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+                guard let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                    
+                    if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
+                        completion(.failure(apiErrorResponse))
+                    } else {
+                        completion(.failure(CatApiError.requestFailed))
+                    }
+                    return
+                }
+                
                 do {
                     let decoded = try decoder.decode(Response.self, from: data)
                     completion(.success(decoded))
                 } catch  {
-                    if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
-                        completion(.failure(apiErrorResponse))
-                    } else {
-                        completion(.failure(error))
-                    }
+                    completion(.failure(error))
                 }
             } else if let error = error {
                 completion(.failure(error))

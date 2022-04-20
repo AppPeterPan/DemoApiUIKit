@@ -20,20 +20,27 @@ class CatApiClientResult {
         urlSession = URLSession(configuration: configuration)
     }
     
-    func decode<T: Decodable>(data: Data?, error: Error?, completion: @escaping (Result<T, Error>) -> Void) {
+    func decode<T: Decodable>(data: Data?, error: Error?, response: URLResponse?, completion: @escaping (Result<T, Error>) -> Void) {
 
         if let data = data {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                
+                if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
+                    completion(.failure(apiErrorResponse))
+                } else {
+                    completion(.failure(CatApiError.requestFailed))
+                }
+                return
+            }
             do {
                 let decodedData = try decoder.decode(T.self, from: data)
                 completion(.success(decodedData))
             } catch {
-                if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
-                    completion(.failure(apiErrorResponse))
-                } else {
-                    completion(.failure(error))
-                }
+                completion(.failure(error))
             }
         } else if let error = error {
             completion(.failure(error))
@@ -53,7 +60,7 @@ class CatApiClientResult {
         let categoriesURL = components.url!
         let request = URLRequest(url: categoriesURL)
         urlSession.dataTask(with: request) { data, response, error in
-            self.decode(data: data, error: error, completion: completion)
+            self.decode(data: data, error: error, response: response, completion: completion)
         }.resume()
     }
     
@@ -71,7 +78,7 @@ class CatApiClientResult {
         request.httpBody = try? encoder.encode(body)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlSession.dataTask(with: request) { data, response, error in
-            self.decode(data: data, error: error, completion: completion)
+            self.decode(data: data, error: error, response: response, completion: completion)
         }.resume()
     }
 }
