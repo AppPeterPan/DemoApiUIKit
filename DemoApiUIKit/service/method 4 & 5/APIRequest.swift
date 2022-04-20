@@ -38,10 +38,8 @@ extension APIRequest {
         request.httpBody = data
         if let multipartDic = multipartDic {
             request.createMultipartFormData(parameters: multipartDic)
-        } else {
-            if method == .post || method == .put {
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            }
+        } else if method == .post || method == .put {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         return request
     }
