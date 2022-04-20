@@ -35,7 +35,7 @@ extension APIRequest {
         var request = URLRequest(url: components.url!)
         request.httpMethod = method.rawValue
         request.httpBody = data
-        if method != .get {
+        if method == .post || method == .put {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
