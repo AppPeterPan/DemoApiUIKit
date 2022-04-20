@@ -49,6 +49,20 @@ class APIRequestResultTableViewController: UITableViewController {
         }
     }
     
+    
+    @IBAction func uploadPhoto(_ sender: Any) {
+        guard let userId = User.current?.id,
+              let image = UIImage(named: "cat") else { return }
+        UploadPhotoRequest(image: image, userId: userId).send { result in
+            switch result {
+            case .success(let catImage):
+                print(catImage.url)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

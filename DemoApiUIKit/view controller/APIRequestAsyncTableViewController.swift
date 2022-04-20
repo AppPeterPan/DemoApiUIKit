@@ -49,6 +49,21 @@ class APIRequestAsyncTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func uploadPhoto(_ sender: Any) {
+        guard let userId = User.current?.id,
+              let image = UIImage(named: "cat") else { return }
+        Task {
+            do {
+                let catImage = try await UploadPhotoRequest(image: image, userId: userId).send()
+                print(catImage.url)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

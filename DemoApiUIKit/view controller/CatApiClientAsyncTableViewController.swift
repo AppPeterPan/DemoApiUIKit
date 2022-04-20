@@ -11,6 +11,11 @@ import Nuke
 class CatApiClientAsyncTableViewController: UITableViewController {
     
     var favorites = [Favorite]()
+    var getFavoritesRequestTask: Task<Void, Never>? = nil
+
+    deinit {
+        getFavoritesRequestTask?.cancel()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,13 +24,15 @@ class CatApiClientAsyncTableViewController: UITableViewController {
     }
     
     func update() {
-        Task {
+        getFavoritesRequestTask?.cancel()
+        getFavoritesRequestTask = Task {
             do {
                 let favorites = try await CatApiClient.shared.fetchFavorites()
                 updateUI(with: favorites)
             } catch {
                 print(error)
             }
+            getFavoritesRequestTask = nil
         }
     }
     
@@ -34,9 +41,23 @@ class CatApiClientAsyncTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    
     @IBAction func upVote(_ sender: Any) {
         Task {
             try? await CatApiClient.shared.vote(imageId: "9ccXTANkb", value: .up)
+        }
+    }
+    
+    
+    @IBAction func uploadPhoto(_ sender: Any) {
+        guard let image = UIImage(named: "cat") else { return }
+        Task {
+            do {
+                let catImage = try await CatApiClient.shared.uploadImage(image: image)
+                print(catImage.url)
+            } catch {
+                print(error)
+            }
         }
     }
     

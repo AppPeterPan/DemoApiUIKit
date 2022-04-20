@@ -5,12 +5,13 @@
 //  Created by Peter Pan on 2022/4/18.
 //
 
-import Foundation
+import UIKit
 
 class CatApiClientCompletion {
     static let shared = CatApiClientCompletion()
     let baseURL = URL(string: "https://api.thecatapi.com/v1")!
     let urlSession: URLSession
+    let boundary = "Boundary-\(UUID().uuidString)"
     
     init() {
         let configuration = URLSessionConfiguration.default
@@ -20,8 +21,13 @@ class CatApiClientCompletion {
         urlSession = URLSession(configuration: configuration)
     }
     
-    func decode<T: Decodable>(data: Data?, completion: @escaping (T?) -> Void) {
-
+    func decode<T: Decodable>(data: Data?, response: URLResponse?, completion: @escaping (T?) -> Void) {
+        guard let httpResponse = response as? HTTPURLResponse,
+              200...201 ~= httpResponse.statusCode else {
+            completion(nil)
+            return
+        }
+        
         if let data = data {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -49,12 +55,7 @@ class CatApiClientCompletion {
         let categoriesURL = components.url!
         let request = URLRequest(url: categoriesURL)
         urlSession.dataTask(with: request) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
-                completion(nil)
-                return
-            }
-            self.decode(data: data, completion: completion)
+            self.decode(data: data, response: response, completion: completion)
         }.resume()
     }
     
@@ -72,12 +73,26 @@ class CatApiClientCompletion {
         request.httpBody = try? encoder.encode(body)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlSession.dataTask(with: request) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
-                completion(nil)
-                return
-            }
-            self.decode(data: data, completion: completion)
+            self.decode(data: data, response: response, completion: completion)
+        }.resume()
+    }
+    
+    func uploadImage(image: UIImage, completion: @escaping (CatImage?) -> Void) {
+        guard let userId = User.current?.id else {
+            completion(nil)
+            return
+        }
+        let url = baseURL.appendingPathComponent("images/upload")
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        
+        let parameters: [String: Any] = [
+            "sub_id": userId,
+            "file": image
+        ]
+        request.createMultipartFormData(parameters: parameters)
+        urlSession.dataTask(with: request) { data, response, error in
+            self.decode(data: data, response: response, completion: completion)
         }.resume()
     }
 }

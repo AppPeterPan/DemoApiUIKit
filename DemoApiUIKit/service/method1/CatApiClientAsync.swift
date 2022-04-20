@@ -5,7 +5,7 @@
 //  Created by Peter Pan on 2022/4/18.
 //
 
-import Foundation
+import UIKit
 
 class CatApiClient {
     static let shared = CatApiClient()
@@ -26,7 +26,7 @@ class CatApiClient {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
+              200...201 ~= httpResponse.statusCode else {
             
             if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
                 throw apiErrorResponse
@@ -65,10 +65,27 @@ class CatApiClient {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         request.httpBody = try? encoder.encode(body)
-        //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let (data, response) = try await urlSession.data(for: request)
         return try decode(data: data, response: response)
         
+    }
+    
+    func uploadImage(image: UIImage) async throws -> CatImage {
+        guard let userId = User.current?.id else {
+            throw CatApiError.userNotLogin
+        }
+        let url = baseURL.appendingPathComponent("images/upload")
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+       
+        let parameters: [String: Any] = [
+            "sub_id": userId,
+            "file": image
+        ]
+        request.createMultipartFormData(parameters: parameters)
+        let (data, response) = try await urlSession.data(for: request)
+        return try decode(data: data, response: response)
     }
 }
 

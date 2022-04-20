@@ -30,3 +30,17 @@ struct UpdateVoteRequest: APIRequest {
         return try? encoder.encode(updateVoteBody)
     }
 }
+
+struct UploadPhotoRequest: APIRequest {
+    let image: UIImage
+    let userId: String
+    var path = "/images/upload"
+    var method: HTTPMethod { .post }
+    typealias Response = CatImage
+    var multipartDic: [String: Any]? {
+        [
+            "sub_id": userId,
+            "file": image
+        ]
+    }
+}

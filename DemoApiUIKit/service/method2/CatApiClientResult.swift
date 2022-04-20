@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 class CatApiClientResult {
     static let shared = CatApiClientResult()
     let baseURL = URL(string: "https://api.thecatapi.com/v1")!
     let urlSession: URLSession
-    
+
     init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = [
@@ -25,9 +26,8 @@ class CatApiClientResult {
         if let data = data {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
             guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
+                  200...201 ~= httpResponse.statusCode else {
                 
                 if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
                     completion(.failure(apiErrorResponse))
@@ -77,6 +77,26 @@ class CatApiClientResult {
         encoder.keyEncodingStrategy = .convertToSnakeCase
         request.httpBody = try? encoder.encode(body)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlSession.dataTask(with: request) { data, response, error in
+            self.decode(data: data, error: error, response: response, completion: completion)
+        }.resume()
+    }
+    
+  
+    func uploadImage(image: UIImage, completion: @escaping (Result<CatImage, Error>) -> Void) {
+        guard let userId = User.current?.id else {
+            completion(.failure(CatApiError.userNotLogin))
+            return
+        }
+        let url = baseURL.appendingPathComponent("images/upload")
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+       
+        let parameters: [String: Any] = [
+            "sub_id": userId,
+            "file": image
+        ]
+        request.createMultipartFormData(parameters: parameters)
         urlSession.dataTask(with: request) { data, response, error in
             self.decode(data: data, error: error, response: response, completion: completion)
         }.resume()

@@ -132,7 +132,7 @@
             </objects>
             <point key="canvasLocation" x="808.69565217391312" y="-52.232142857142854"/>
         </scene>
-        <!--定義串接 API 的物件， 搭配 async function-->
+        <!--定義串接 API 的物件， 搭配 async-->
         <scene sceneID="FC8-gw-rrO">
             <objects>
                 <tableViewController id="d8O-D9-5s3" customClass="CatApiClientAsyncTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
@@ -185,12 +185,19 @@
                             <outlet property="delegate" destination="d8O-D9-5s3" id="BT6-pS-FZY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="定義串接 API 的物件， 搭配 async function" id="Ddw-QV-W9Q">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nHt-rJ-bt7">
-                            <connections>
-                                <action selector="upVote:" destination="d8O-D9-5s3" id="ij1-YN-c1F"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="定義串接 API 的物件， 搭配 async" id="Ddw-QV-W9Q">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="nHt-rJ-bt7">
+                                <connections>
+                                    <action selector="upVote:" destination="d8O-D9-5s3" id="ij1-YN-c1F"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="photo" catalog="system" id="8cS-oP-IVY">
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="d8O-D9-5s3" id="9HQ-r3-s3j"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DQY-vw-kkt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -218,7 +225,7 @@
             </objects>
             <point key="canvasLocation" x="-303" y="-52"/>
         </scene>
-        <!--定義串接 API 的物件 & 使用 Result type-->
+        <!--定義串接 API 的物件 & 使用 Result-->
         <scene sceneID="wyB-oi-V3X">
             <objects>
                 <tableViewController id="qDt-Ks-uvc" customClass="CatApiClientResultTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
@@ -271,19 +278,26 @@
                             <outlet property="delegate" destination="qDt-Ks-uvc" id="Ev7-Ry-xmo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="定義串接 API 的物件 &amp; 使用 Result type" id="WuM-7g-7U0">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iMh-yQ-tXa">
-                            <connections>
-                                <action selector="upVote:" destination="qDt-Ks-uvc" id="MgZ-0t-tPO"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="定義串接 API 的物件 &amp; 使用 Result" id="WuM-7g-7U0">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="iMh-yQ-tXa">
+                                <connections>
+                                    <action selector="upVote:" destination="qDt-Ks-uvc" id="MgZ-0t-tPO"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="photo" catalog="system" id="Wn4-ZD-WCG">
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="qDt-Ks-uvc" id="l0v-YB-mGK"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tut-Oq-cnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1871" y="-652"/>
         </scene>
-        <!--定義串接 API 的物件 & function 型別的參數-->
+        <!--串接 API 的物件 & function 型別參數-->
         <scene sceneID="qjY-a8-IGw">
             <objects>
                 <tableViewController id="62T-vY-yB7" customClass="CatApiClientCompletionTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
@@ -336,19 +350,26 @@
                             <outlet property="delegate" destination="62T-vY-yB7" id="ss0-sJ-7ia"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="定義串接 API 的物件 &amp; function 型別的參數" id="Rxh-Hp-SvW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="22v-Aj-imf">
-                            <connections>
-                                <action selector="upVote:" destination="62T-vY-yB7" id="79y-Gn-kcJ"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="串接 API 的物件 &amp; function 型別參數" id="Rxh-Hp-SvW">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="22v-Aj-imf">
+                                <connections>
+                                    <action selector="upVote:" destination="62T-vY-yB7" id="79y-Gn-kcJ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="photo" catalog="system" id="cOa-6e-6QV">
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="62T-vY-yB7" id="SQp-ba-VLA"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Acp-yo-Z3a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1910" y="-72"/>
         </scene>
-        <!--定義 APIRequest & APIService，搭配 async-->
+        <!--APIRequest 搭配 async-->
         <scene sceneID="5Hi-52-YTB">
             <objects>
                 <tableViewController id="6fK-ec-SHQ" customClass="APIRequestAsyncTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
@@ -401,19 +422,26 @@
                             <outlet property="delegate" destination="6fK-ec-SHQ" id="eNb-5f-QxR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="定義 APIRequest &amp; APIService，搭配 async" id="OAf-4T-d9A">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0NM-W8-GTQ">
-                            <connections>
-                                <action selector="upVote:" destination="6fK-ec-SHQ" id="r5C-8o-M4i"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="APIRequest 搭配 async" id="OAf-4T-d9A">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="0NM-W8-GTQ">
+                                <connections>
+                                    <action selector="upVote:" destination="6fK-ec-SHQ" id="r5C-8o-M4i"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="photo" catalog="system" id="qHg-Ak-Skv">
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="6fK-ec-SHQ" id="YPP-8q-DKf"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjg-yP-rrc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1755" y="338"/>
         </scene>
-        <!--定義 APIRequest & APIService，搭配 Result-->
+        <!--APIRequest 搭配 Result-->
         <scene sceneID="k7f-eo-zLF">
             <objects>
                 <tableViewController id="zFr-GV-9mt" customClass="APIRequestResultTableViewController" customModule="DemoApiUIKit" customModuleProvider="target" sceneMemberID="viewController">
@@ -466,12 +494,19 @@
                             <outlet property="delegate" destination="zFr-GV-9mt" id="SxR-WD-n3U"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="定義 APIRequest &amp; APIService，搭配 Result" id="QoQ-1C-ga5">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QDj-Gc-cHt">
-                            <connections>
-                                <action selector="upVote:" destination="zFr-GV-9mt" id="Q3u-W3-wJ4"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="APIRequest 搭配 Result" id="QoQ-1C-ga5">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="QDj-Gc-cHt">
+                                <connections>
+                                    <action selector="upVote:" destination="zFr-GV-9mt" id="Q3u-W3-wJ4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="photo" catalog="system" id="Atn-IM-ERB">
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="zFr-GV-9mt" id="044-Ve-9b9"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xk5-FV-0oH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -480,6 +515,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

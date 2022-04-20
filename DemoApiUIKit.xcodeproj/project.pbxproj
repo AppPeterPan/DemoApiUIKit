@@ -24,6 +24,8 @@
 		A65D62CC280D56B20086A7C1 /* CatApiClientResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65D62CB280D56B20086A7C1 /* CatApiClientResultTableViewController.swift */; };
 		A65D62CF280D58AD0086A7C1 /* CatApiClientCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65D62CE280D58AD0086A7C1 /* CatApiClientCompletion.swift */; };
 		A65D62D1280D595B0086A7C1 /* CatApiClientCompletionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65D62D0280D595B0086A7C1 /* CatApiClientCompletionTableViewController.swift */; };
+		A67B3CE0280FAF3C00305918 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67B3CDF280FAF3C00305918 /* Data+Extension.swift */; };
+		A67B3CE528101B0400305918 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67B3CE428101B0400305918 /* URLRequest+Extension.swift */; };
 		A680FECC280E8B9000B37CB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680FECB280E8B9000B37CB5 /* User.swift */; };
 		A680FECE280E8C6100B37CB5 /* APIRequestResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680FECD280E8C6100B37CB5 /* APIRequestResultTableViewController.swift */; };
 		A680FED0280E8C6800B37CB5 /* APIRequestAsyncTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A680FECF280E8C6800B37CB5 /* APIRequestAsyncTableViewController.swift */; };
@@ -54,6 +56,8 @@
 		A65D62CB280D56B20086A7C1 /* CatApiClientResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatApiClientResultTableViewController.swift; sourceTree = "<group>"; };
 		A65D62CE280D58AD0086A7C1 /* CatApiClientCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatApiClientCompletion.swift; sourceTree = "<group>"; };
 		A65D62D0280D595B0086A7C1 /* CatApiClientCompletionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatApiClientCompletionTableViewController.swift; sourceTree = "<group>"; };
+		A67B3CDF280FAF3C00305918 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		A67B3CE428101B0400305918 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		A680FECB280E8B9000B37CB5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A680FECD280E8C6100B37CB5 /* APIRequestResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestResultTableViewController.swift; sourceTree = "<group>"; };
 		A680FECF280E8C6800B37CB5 /* APIRequestAsyncTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestAsyncTableViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				A65D62BD280D51E30086A7C1 /* UITableViewCell+Extension.swift */,
+				A67B3CDF280FAF3C00305918 /* Data+Extension.swift */,
+				A67B3CE428101B0400305918 /* URLRequest+Extension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -276,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A65D62B6280D504A0086A7C1 /* Favorite.swift in Sources */,
+				A67B3CE528101B0400305918 /* URLRequest+Extension.swift in Sources */,
 				A6A08521280D5B7F00E9F6B2 /* APIService.swift in Sources */,
 				A65D62B7280D504A0086A7C1 /* CatApiError.swift in Sources */,
 				A680FED4280E9AC600B37CB5 /* UpdateVote.swift in Sources */,
@@ -287,6 +294,7 @@
 				A65D62C3280D530E0086A7C1 /* CatApiClientAsync.swift in Sources */,
 				A65D629B280D50080086A7C1 /* SceneDelegate.swift in Sources */,
 				A6A0851E280D5A9D00E9F6B2 /* APIRequest.swift in Sources */,
+				A67B3CE0280FAF3C00305918 /* Data+Extension.swift in Sources */,
 				A680FECE280E8C6100B37CB5 /* APIRequestResultTableViewController.swift in Sources */,
 				A65D62CA280D56650086A7C1 /* CatApiClientResult.swift in Sources */,
 				A65D62C1280D52650086A7C1 /* CatTableViewCell.swift in Sources */,

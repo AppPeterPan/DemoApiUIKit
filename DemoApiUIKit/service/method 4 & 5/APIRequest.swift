@@ -12,16 +12,17 @@ protocol APIRequest {
     var request: URLRequest { get }
     var data: Data? { get }
     var method: HTTPMethod { get }
+    var multipartDic: [String: Any]? { get }
+
 }
 
 extension APIRequest {
     var host: String { "api.thecatapi.com" }
-    
-}
-
-extension APIRequest {
     var queryItems: [URLQueryItem]? { nil }
     var data: Data? { nil }
+    var multipartDic: [String: Any]? { nil }
+
+    
 }
 
 extension APIRequest {
@@ -35,10 +36,13 @@ extension APIRequest {
         var request = URLRequest(url: components.url!)
         request.httpMethod = method.rawValue
         request.httpBody = data
-        if method == .post || method == .put {
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        if let multipartDic = multipartDic {
+            request.createMultipartFormData(parameters: multipartDic)
+        } else {
+            if method == .post || method == .put {
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            }
         }
-        
         return request
     }
 }
@@ -52,7 +56,7 @@ extension APIRequest where Response: Decodable {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
+              200...201 ~= httpResponse.statusCode else {
             
             if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
                 throw apiErrorResponse
@@ -71,7 +75,7 @@ extension APIRequest where Response: Decodable {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 guard let httpResponse = response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200 else {
+                      200...201 ~= httpResponse.statusCode else {
                     
                     if let apiErrorResponse = try? decoder.decode(ApiErrorResponse.self, from: data) {
                         completion(.failure(apiErrorResponse))

@@ -46,6 +46,16 @@ class CatApiClientCompletionTableViewController: UITableViewController {
         }
     }
     
+    
+    @IBAction func uploadPhoto(_ sender: Any) {
+        guard let image = UIImage(named: "cat") else { return }
+        CatApiClientCompletion.shared.uploadImage(image: image) { catImage in
+            if let catImage = catImage {
+                print(catImage.url)
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
