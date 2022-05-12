@@ -15,21 +15,21 @@ extension URLRequest {
         
         for (key, value) in parameters {
             postData.appendString("--\(boundary)\r\n")
-            postData.appendString("Content-Disposition:form-data; name=\"\(key)\"")
+            postData.appendString("Content-Disposition:form-data; name=\"\(key)\";")
             
-            if value is String {
-                let paramValue = value as! String
-                postData.appendString("\r\n\r\n\(paramValue)\r\n")
-            } else if value is UIImage {
-                let uiImage = value as! UIImage
-                let imageData = uiImage.jpegData(compressionQuality: 0.9)!
+            switch value {
+            case let value as String:
+                postData.appendString("\r\n\r\n\(value)\r\n")
+            case let value as UIImage:
+                let imageData = value.jpegData(compressionQuality: 0.9)!
                 let fileName = UUID().uuidString
-                postData.appendString("; filename=\"\(fileName)\"\r\n"
-                                      + "Content-Type: image/jpeg\r\n\r\n")
+                postData.appendString("filename=\"\(fileName)\"\r\n")
+                postData.appendString("Content-Type: image/jpeg\r\n\r\n")
                 postData.append(imageData)
                 postData.appendString("\r\n")
+            default:
+                break
             }
-            
         }
         postData.appendString("--\(boundary)--\r\n")
         httpBody = postData
